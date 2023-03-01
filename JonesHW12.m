@@ -28,10 +28,17 @@ LG = fsolve(f_rx,[-1])
 
 odeoptions = odeset('RelTol', 1e-12, 'AbsTol', 1e-12);
 
-r0 = [.487, 0.86, 0];
-v0 = [0.0005, 0.0005, 0]; 
+% Cool Orbit Initial Conditions
+r0 = [0.976500014, 0, -1.67692*10^(-8)];
+v0 = [0.008008, -1.67683, 0];
+% Halo Orbit
+% r0 = [0.8309699, 0, 0.12];
+% v0 = [0 0.2348559, 0];
 
-timespan = 0:.001:30;
+%r0 = [0.830969944, 0, 0.12];
+%v0 = [0, 0.2348559, 0]; 
+
+timespan = 0:.001:12;
 Y0 = [r0,v0];
 
 mu = 0.0121506037932213; 
@@ -61,15 +68,10 @@ x2 = 1-mu;
 %plot(DU*Y(1:length(Y),1), DU*Y(1:length(Y),2), DU*LG1, 0, 'ro', DU*LG2, 0, 'ro', DU*LG3, 0, 'ro', DU*LG4(1), DU*LG4(2), 'bo', DU*LG5(1), DU*LG5(2), 'bo', DU*x1, 0, 'x', DU*x2, 0, '+', 'LineWidth', 2.0)
 
 %3D plot
-plot3(DU*Y(1:length(Y),1), DU*Y(1:length(Y),2), DU*Y(1:length(Y),3), DU*LG1, 0, 0,'o', DU*LG2, 0, 0, 'o', DU*LG3, 0, 0, 'o', DU*LG4(1), DU*LG4(2), 0, 'o', DU*LG5(1), DU*LG5(2), 0,'o')
+plot3(DU*Y(1:length(Y),1), DU*Y(1:length(Y),2), DU*Y(1:length(Y),3), DU*LG1, 0, 0,'ro', DU*LG2, 0, 0, 'ro', DU*LG3, 0, 0, 'ro', DU*LG4(1), DU*LG4(2), 0, 'ro', DU*LG5(1), DU*LG5(2), 0,'ro', DU*x1, 0,0, 'go', DU*x2, 0,0, 'ko')
+
+hold on
 
 grid on
 title('Synodic Frame')
-
-hold on 
-
-[X,Y,Z] = sphere;
-surf(X,Y,Z)
-r = 1; %Earth Radius
-
 
